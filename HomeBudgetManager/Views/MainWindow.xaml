@@ -1,0 +1,70 @@
+﻿<Window x:Class="HomeBudgetManager.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HomeBudgetManager.Views"
+        mc:Ignorable="d"
+        Title="{Binding WindowTitle, Mode=OneWay}" Height="450" Width="800"
+        DataContext="{Binding Main, Source={StaticResource Locator}}">
+    <Window.IsEnabled>
+        <Binding Path="BindableProperty" Source="{StaticResource MessagerListener}" />
+    </Window.IsEnabled>
+
+    <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top">
+
+            <!--menu item -->
+            <MenuItem Header="Options">
+                <MenuItem Command="{Binding AddFileCmd, Mode=OneWay}" Header="{Binding AddFile, Mode=OneWay}"/>
+                <MenuItem Command="{Binding OpenGroupManagerCommand, Mode=OneWay}" Header="Zarzadzaj grupami"/>
+                <MenuItem Command="{Binding CloseCmd, Mode=OneWay}" Header="Zamknij"/>
+            </MenuItem>
+        </Menu>
+
+        <Grid Margin="10" DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="6*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <GroupBox Grid.Column="0" Grid.Row="0" Header="{Binding Summary, Mode=OneWay}" Margin="0,15,5,0">
+                <StackPanel Orientation="Vertical">
+                    <!-- REVENUE-->
+                    <Label Content="Przychody" />
+                    <Label Content="{Binding MonthRevenue, Mode=TwoWay}" Foreground="DarkGreen" Margin="2,2,2,2" />
+                    <!-- EXPENCES -->
+                    <Label Content="Wydatki" />
+                    <Label Content="{Binding MonthExpences, Mode=TwoWay}" Foreground="DarkGreen" Margin="2,2,2,2" />
+                </StackPanel>
+            </GroupBox>
+
+            <!-- COMBO BOX -->
+            <ComboBox Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" ItemsSource="{Binding DateList}" SelectedItem="{Binding DateListSelect, NotifyOnTargetUpdated=True}" />
+
+            <GroupBox Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Header="Wydatki" >
+                <DataGrid x:Name="MainGroupDataGrid" IsSynchronizedWithCurrentItem="True" 
+                          ItemsSource="{Binding MainList}" AutoGenerateColumns="False"
+                          AlternatingRowBackground="LightBlue" CanUserAddRows="False" 
+                          CanUserDeleteRows="False" Background="White">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Data Transakcji" Binding="{Binding TransactionDate}" Width="*" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Rodzaj Transakcji" Binding="{Binding PaymentType}" Width="*" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Odbiorca" Binding="{Binding Sender}" Width="*" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Opis" Binding="{Binding Description}" Width="*" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Obciążenie / uznanie" Binding="{Binding TransactionValue}" Width="*" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Saldo" Binding="{Binding Balance}" Width="*" IsReadOnly="True" />
+                    </DataGrid.Columns>
+
+                </DataGrid>
+            </GroupBox>
+
+        </Grid>
+
+    </DockPanel>
+</Window>
