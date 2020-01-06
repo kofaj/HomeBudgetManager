@@ -42,7 +42,8 @@ namespace HomeBudgetManager.Common.Tests.ServiceTests
 
             BankTransactionManager service = new BankTransactionManager();
             var result = service.ExecuteCreation(BankType.Millenium, rawData);
-            IList<BaseUnit> bUnit = result.ConvertToBaseUnit();
+            var atr = ExampleAtributes();
+            IList<BaseUnit> bUnit = result.ConvertToBaseUnit(ref atr);
 
             Assert.NotNull(bUnit);
 
@@ -67,7 +68,8 @@ namespace HomeBudgetManager.Common.Tests.ServiceTests
 
             BankTransactionManager service = new BankTransactionManager();
             var result = service.ExecuteCreation(BankType.MBank, rawData);
-            IList<BaseUnit> bUnit = result.ConvertToBaseUnit();
+            var atr = ExampleAtributes();
+            IList<BaseUnit> bUnit = result.ConvertToBaseUnit(ref atr);
 
             Assert.NotNull(bUnit);
 
@@ -85,6 +87,8 @@ namespace HomeBudgetManager.Common.Tests.ServiceTests
             Assert.NotEqual(0, credit.Value);
             Assert.Equal(BaseUnit.TransactionTypes.Credit, credit.TransactionType);
 
+            // find atributes != default
+            Assert.Contains(bUnit, a => !string.IsNullOrEmpty(a.Atribute.Name));
         }
 
 
@@ -108,6 +112,15 @@ namespace HomeBudgetManager.Common.Tests.ServiceTests
             string[] result = File.ReadAllLines(filePath);
 
             return result;
+        }
+
+        private IList<Atribute> ExampleAtributes()
+        {
+            return new List<Atribute>
+            {
+                {new Atribute(1, "ORLEN") },
+                {new Atribute(2, "LEWIATAN") }
+            };
         }
     }
 }

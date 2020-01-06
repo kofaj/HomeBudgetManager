@@ -5,6 +5,6 @@ namespace HomeBudgetManager.Common.Services.Abstracts
 {
     public interface IBankTransactionManager
     {
-        IList<BaseUnit> ConvertToBaseUnit();
+        IList<BaseUnit> ConvertToBaseUnit(ref IList<Atribute> atributes);
     }
 }

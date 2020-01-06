@@ -1,5 +1,6 @@
 ﻿using HomeBudgetManager.Common.Models;
 using HomeBudgetManager.Common.Services.Abstracts;
+using HomeBudgetManager.Common.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,7 +17,7 @@ namespace HomeBudgetManager.Common.Services.BankManagerFactory
             RawData = rawData;
         }
 
-        public IList<BaseUnit> ConvertToBaseUnit()
+        public IList<BaseUnit> ConvertToBaseUnit(ref IList<Atribute> atr)
         {
             var result = new List<BaseUnit>();
 
@@ -34,8 +35,9 @@ namespace HomeBudgetManager.Common.Services.BankManagerFactory
                 TransactionTypes tt = transactionDetails[tValue].StartsWith('-') ? TransactionTypes.Charge : TransactionTypes.Credit;
                 string tName = transactionDetails[transactionName].Substring(1, transactionDetails[transactionName].Length - 2).Trim();
                 float value = ConvertToFloat(transactionDetails[tValue]);
+                Atribute a = ObjectFinder.GetFitAtribute(ref atr, tName);
 
-                result.Add(new BaseUnit(dt, tName, value, tt, new Atribute()));
+                result.Add(new BaseUnit(dt, tName, value, tt, a));
             }
 
             return result;

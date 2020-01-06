@@ -13,8 +13,4 @@
     <ProjectReference Include="..\HomeBudgetManager.Repository\HomeBudgetManager.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Utilities\" />
-  </ItemGroup>
-
 </Project>
