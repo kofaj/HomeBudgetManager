@@ -1,0 +1,4 @@
+"Numer rachunku/karty","Data transakcji","Data rozliczenia","Rodzaj transakcji","Na konto/Z konta","Odbiorca/Zleceniodawca","Opis","Obciążenia","Uznania","Saldo","Waluta"
+"PL27 1160 2202 0000 0003 0187 7316","2019-07-01","2019-07-01","TRANSAKCJA KARTĄ PŁATNICZĄ","","","Sklep Spozywczo-PrzemysMikolow 19/06/28","-6.38","","1593.25","PLN"
+"PL27 1160 2202 0000 0003 0187 7316","2019-06-27","2019-06-27","TRANSAKCJA KARTĄ PŁATNICZĄ","","","ORLEN 01               BIERUN 19/06/25","-100.14","","1642.40","PLN"
+"PL27 1160 2202 0000 0003 0187 7316","2019-07-01","2019-07-01","PRZELEW PRZYCHODZĄCY","36 11 4020 0400 0030 0275 8972 03","PRZEMYSŁAW WRÓBEL UL.CISOWA 26 43-353 PORĄBKA","NETFLIX","","13.00","1599.76","PLN"
