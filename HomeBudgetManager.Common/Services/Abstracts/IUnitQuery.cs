@@ -7,4 +7,9 @@ namespace HomeBudgetManager.Common.Services.Abstracts
         IList<T> GetAllPositions();
         T GetSinglePosition(string name);
     }
+
+    public interface IUnitQueryExtension<T>
+    {
+        IList<T> GetPositions(int[] positionIds);
+    }
 }

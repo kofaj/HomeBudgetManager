@@ -13,4 +13,9 @@ namespace HomeBudgetManager.Repository.Services.Abstract
         T GetSinglePosition(string name);
         bool IsAlreadySaved(string name);
     }
+
+    public interface IUnitManagerExtension<T>
+    {
+        IList<T> GetPositions(int[] positionIds);
+    }
 }

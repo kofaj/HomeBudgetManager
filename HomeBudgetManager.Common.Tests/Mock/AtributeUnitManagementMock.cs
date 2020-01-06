@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace HomeBudgetManager.Common.Tests.Mock
 {
-    public class AtributeUnitManagementMock : IUnitManager<Atribute>
+    public class AtributeUnitManagementMock : IUnitManager<Atribute>, IUnitManagerExtension<Atribute>
     {
         public static IList<Atribute> mockDb;
 
@@ -33,6 +33,11 @@ namespace HomeBudgetManager.Common.Tests.Mock
         public IList<Atribute> GetAllPositions()
         {
             return mockDb;
+        }
+
+        public IList<Atribute> GetPositions(int[] positionIds)
+        {
+            return mockDb.Where(w => positionIds.Any(a => a == w.AtributeId)).ToList();
         }
 
         public Atribute GetSinglePosition(string name)
