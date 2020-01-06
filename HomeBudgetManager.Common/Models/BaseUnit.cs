@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HomeBudgetManager.Common.Models
 {
@@ -8,15 +6,25 @@ namespace HomeBudgetManager.Common.Models
     {
         public enum TransactionTypes
         {
+            None,
             Charge,
             Credit,
             InternalTransfer
         }
 
-        public DateTime TransactionDate { get; set; }
-        public string TransactionName { get; set; }
-        public float Value { get; set; }
-        public TransactionTypes TransactionType { get; set; }
-        public Atribute Atribute { get; set; }
+        public DateTime TransactionDate;
+        public string TransactionName;
+        public float Value;
+        public TransactionTypes TransactionType;
+        public Atribute Atribute;
+
+        public BaseUnit(DateTime transactionDate, string transactionName, float value, TransactionTypes transactionType, Atribute atribute)
+        {
+            TransactionDate = transactionDate;
+            TransactionName = transactionName;
+            Value = value;
+            TransactionType = transactionType;
+            Atribute = atribute;
+        }
     }
 }

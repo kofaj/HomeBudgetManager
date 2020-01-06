@@ -5,6 +5,6 @@ namespace HomeBudgetManager.Common.Services.Abstracts
 {
     public interface IBankTransactionManager
     {
-        IReadOnlyList<BaseUnit> ConvertToBaseUnit();
+        IList<BaseUnit> ConvertToBaseUnit();
     }
 }
